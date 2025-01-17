@@ -1,1 +1,86 @@
-/* Placeholder for animations.css */
+/* animations.css: Advanced animations for attacks, defense, and effects */
+
+/* Keyframes for Attack Animation */
+@keyframes attack-swing {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(50px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for Heal Animation */
+@keyframes heal-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 1);
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        transform: scale(1);
+    }
+}
+
+/* Keyframes for Defend Animation */
+@keyframes shield-shimmer {
+    0% {
+        background: rgba(0, 0, 255, 0.3);
+    }
+    50% {
+        background: rgba(0, 0, 255, 0.6);
+    }
+    100% {
+        background: rgba(0, 0, 255, 0.3);
+    }
+}
+
+/* Keyframes for Health Bar Animation */
+@keyframes health-decrease {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@keyframes health-increase {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Classes to Trigger Animations */
+.attack-animation {
+    animation: attack-swing 0.5s ease-in-out;
+}
+
+.heal-animation {
+    animation: heal-glow 1.5s ease-in-out;
+}
+
+.defend-animation {
+    animation: shield-shimmer 1s infinite;
+}
+
+.health-bar-decrease {
+    animation: health-decrease 1s linear;
+}
+
+.health-bar-increase {
+    animation: health-increase 1s linear;
+}
