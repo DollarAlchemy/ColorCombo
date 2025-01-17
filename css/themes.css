@@ -4,6 +4,7 @@
 #battle-arena.default-theme {
     background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
     border-color: #444;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Arena 1: Grasslands Theme */
@@ -11,6 +12,7 @@
     background: linear-gradient(135deg, #98fb98, #32cd32);
     border-color: #228b22;
     color: #ffffff;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Arena 2: Desert Theme */
@@ -18,6 +20,7 @@
     background: linear-gradient(135deg, #f5deb3, #deb887);
     border-color: #cd853f;
     color: #8b4513;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Arena Boss: Night Sky Theme */
@@ -25,6 +28,7 @@
     background: linear-gradient(135deg, #191970, #000080);
     border-color: #4b0082;
     color: #f0e68c;
+    transition: all 0.5s ease-in-out;
 }
 
 /* Additional Styling for Themes */
@@ -35,6 +39,7 @@
 #dialogue {
     border-radius: 10px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 /* Button Styling for Themes */
@@ -44,12 +49,18 @@ button {
 
 button.grasslands-theme {
     background-color: #32cd32;
+    box-shadow: 0 4px 6px rgba(50, 205, 50, 0.4);
+    border: 1px solid #228b22;
 }
 
 button.desert-theme {
     background-color: #cd853f;
+    box-shadow: 0 4px 6px rgba(205, 133, 63, 0.4);
+    border: 1px solid #8b4513;
 }
 
 button.night-sky-theme {
     background-color: #4b0082;
+    box-shadow: 0 4px 6px rgba(75, 0, 130, 0.4);
+    border: 1px solid #191970;
 }
