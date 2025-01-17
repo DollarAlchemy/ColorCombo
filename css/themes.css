@@ -1,1 +1,55 @@
-/* Placeholder for themes.css */
+/* themes.css: Custom themes for levels and arenas */
+
+/* Default Arena Theme */
+#battle-arena.default-theme {
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    border-color: #444;
+}
+
+/* Arena 1: Grasslands Theme */
+#battle-arena.grasslands-theme {
+    background: linear-gradient(135deg, #98fb98, #32cd32);
+    border-color: #228b22;
+    color: #ffffff;
+}
+
+/* Arena 2: Desert Theme */
+#battle-arena.desert-theme {
+    background: linear-gradient(135deg, #f5deb3, #deb887);
+    border-color: #cd853f;
+    color: #8b4513;
+}
+
+/* Arena Boss: Night Sky Theme */
+#battle-arena.night-sky-theme {
+    background: linear-gradient(135deg, #191970, #000080);
+    border-color: #4b0082;
+    color: #f0e68c;
+}
+
+/* Additional Styling for Themes */
+#battle-arena h1, #battle-arena h2 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#dialogue {
+    border-radius: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling for Themes */
+button {
+    transition: all 0.3s ease;
+}
+
+button.grasslands-theme {
+    background-color: #32cd32;
+}
+
+button.desert-theme {
+    background-color: #cd853f;
+}
+
+button.night-sky-theme {
+    background-color: #4b0082;
+}
