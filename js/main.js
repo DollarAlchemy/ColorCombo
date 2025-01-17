@@ -21,6 +21,7 @@ const enemyHealthBar = document.getElementById('enemy-health');
 let currentLevel = 1;
 const player = { health: 3, maxHealth: 3, emoji: '😀' };
 let enemy = { health: 3, maxHealth: 3, emoji: '🤖' };
+const choices = ['attack', 'defend', 'heal']; // Rock-paper-scissors choices
 
 // Utility Functions
 function logAction(message) {
@@ -50,14 +51,36 @@ function startNextLevel() {
     logAction(`Level ${currentLevel}: A new challenger appears!`);
 }
 
+function getRandomChoice() {
+    return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function determineOutcome(playerChoice, enemyChoice) {
+    // Rock-paper-scissors logic
+    if (playerChoice === enemyChoice) return 'draw';
+    if (
+        (playerChoice === 'attack' && enemyChoice === 'heal') ||
+        (playerChoice === 'defend' && enemyChoice === 'attack') ||
+        (playerChoice === 'heal' && enemyChoice === 'defend')
+    ) {
+        return 'win';
+    }
+    return 'lose';
+}
+
 // Game Logic
 function attack() {
-    if (enemy.health > 0) {
+    const playerChoice = 'attack';
+    const enemyChoice = getRandomChoice();
+
+    const outcome = determineOutcome(playerChoice, enemyChoice);
+
+    if (outcome === 'win') {
         enemy.health--;
         updateHealthBar(enemyHealthBar, enemy.health, enemy.maxHealth);
         playAttackAnimation('player-emoji', 'enemy-health');
         playSound('attack');
-        logAction('You attacked the enemy!');
+        logAction(`You attacked, and the enemy tried to ${enemyChoice}. You won this round!`);
 
         if (enemy.health === 0) {
             logAction('You defeated the enemy! Moving to the next level.');
@@ -66,26 +89,65 @@ function attack() {
                 startNextLevel();
             }, 2000);
         }
+    } else if (outcome === 'draw') {
+        logAction(`You attacked, and the enemy attacked too. It was a draw!`);
     } else {
-        logAction('The enemy is already defeated.');
+        player.health--;
+        updateHealthBar(playerHealthBar, player.health, player.maxHealth);
+        playSound('defend');
+        logAction(`You attacked, but the enemy defended! You lost this round.`);
+
+        if (player.health === 0) {
+            logAction('Game Over! You have been defeated.');
+            stopBackgroundMusic();
+        }
     }
 }
 
 function defend() {
-    logAction('You defended against the enemy attack!');
-    playDefendAnimation('player-emoji');
-    playSound('defend');
+    const playerChoice = 'defend';
+    const enemyChoice = getRandomChoice();
+
+    const outcome = determineOutcome(playerChoice, enemyChoice);
+
+    if (outcome === 'win') {
+        logAction(`You defended, and the enemy tried to ${enemyChoice}. You won this round!`);
+        playDefendAnimation('player-emoji');
+        playSound('defend');
+    } else if (outcome === 'draw') {
+        logAction(`You defended, and the enemy defended too. It was a draw!`);
+    } else {
+        player.health--;
+        updateHealthBar(playerHealthBar, player.health, player.maxHealth);
+        playSound('attack');
+        logAction(`You defended, but the enemy attacked! You lost this round.`);
+
+        if (player.health === 0) {
+            logAction('Game Over! You have been defeated.');
+            stopBackgroundMusic();
+        }
+    }
 }
 
 function heal() {
-    if (player.health < player.maxHealth) {
+    const playerChoice = 'heal';
+    const enemyChoice = getRandomChoice();
+
+    const outcome = determineOutcome(playerChoice, enemyChoice);
+
+    if (outcome === 'win') {
         player.health++;
         updateHealthBar(playerHealthBar, player.health, player.maxHealth);
         playHealAnimation('player-emoji');
         playSound('heal');
-        logAction('You healed yourself!');
+        logAction(`You healed, and the enemy tried to ${enemyChoice}. You won this round!`);
+    } else if (outcome === 'draw') {
+        logAction(`You healed, and the enemy healed too. It was a draw!`);
     } else {
-        logAction('You are already at full health.');
+        enemy.health++;
+        updateHealthBar(enemyHealthBar, enemy.health, enemy.maxHealth);
+        playSound('heal');
+        logAction(`You healed, but the enemy attacked! You lost this round.`);
     }
 }
 
